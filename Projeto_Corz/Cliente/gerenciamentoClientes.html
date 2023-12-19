@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento de Clientes</title>
+    <!-- Seus estilos CSS aqui -->
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- Formulário para inserir nova nota fiscal para qualquer cliente -->
+<form method="post" action="inserir_nota.php">
+    <label for="data_emissao">Data de Emissão:</label>
+    <input type="date" name="data_emissao" required>
+    
+    <label for="valor_nota">Valor da Nota:</label>
+    <input type="number" step="0.01" name="valor_nota" placeholder="0.00" required>
+
+    <!-- Outros campos a serem adicionados conforme sua necessidade -->
+
+    <button type="submit" name="submit_create_nota">Inserir Nota Fiscal</button>
+</form>
+
+<form method="post" action="clientes.php">
+    <input type="text" name="nome_cliente" placeholder="Nome do Cliente">
+    <input type="email" name="email_cliente" placeholder="Email do Cliente">
+    <button type="submit" name="submit_create">Criar Cliente</button>
+</form>
+
+<?php if (!empty($clientes)) : ?>
+    <ul>
+        <?php foreach ($clientes as $cliente) : ?>
+            <li>
+                <?php echo $cliente["nome"]; ?> - <?php echo $cliente["email"]; ?>
+                <form method="post" action="clientes.php">
+                    <input type="hidden" name="cliente_id" value="<?php echo $cliente["id"]; ?>
+                    <input type="text" name="nome_cliente" value="<?php echo $cliente["nome"]; ?>
+                    <input type="email" name="email_cliente" value="<?php echo $cliente["email"]; ?>
+                    <button type="submit" name="submit_update">Atualizar</button>
+                    <button type="submit" name="submit_delete">Excluir</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else : ?>
+    <p>Nenhum cliente encontrado.</p>
+<?php endif; ?>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes da Nota Fiscal</title>
+    <link rel="stylesheet" href="estiloVerdeDetalhes.css">
+</head>
+
+<body>
+    <h1>Detalhes da Nota Fiscal</h1>
+
+    <?php if (isset($nota)) : ?>
+        <p><strong>Nota Fiscal ID:</strong> <?php echo $nota['id']; ?></p>
+        <p><strong>Data de Emissão:</strong> <?php echo $nota['data_emissao']; ?></p>
+        <p><strong>Valor da Nota:</strong> R$ <?php echo number_format($nota['valor_nota'], 2, ',', '.'); ?></p>
+
+    <?php else : ?>
+        <p>Nota fiscal não encontrada.</p>
+    <?php endif; ?>    
+</body>
+</html>
